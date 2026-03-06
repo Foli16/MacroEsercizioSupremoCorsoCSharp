@@ -4,6 +4,7 @@
     static List<Modello> listModello = [];
     public static void Main()
     {
+        InizializzaLista();
         bool continua = true;
         while (continua)
         {
@@ -20,7 +21,7 @@
             switch (scelta)
             {
                 case 1:
-                    // CreaProdotti();
+                    CreaProdotti();
                     break;
                 case 2:
                     CancellaProdotti();
@@ -112,4 +113,60 @@
             //controllare metodi per stampa info
         }
     }
+
+    public static void CreaProdotti()
+    {
+        Console.WriteLine($"Che prodotto vui creare?");
+        Console.WriteLine($"1 - Diario");
+        Console.WriteLine($"2 - Quaderno");
+        Console.WriteLine($"3 - Calendario");
+
+        int sceltaTipo = int.Parse(Console.ReadLine());
+
+        Console.WriteLine($"Altezza pagina: ");
+        float altezza = float.Parse(Console.ReadLine());
+
+        Console.WriteLine($"Larghezza pagina: ");
+        float lunghezza = float.Parse(Console.ReadLine());
+
+        Console.WriteLine($"Prezzo: ");
+        decimal prezzo = decimal.Parse(Console.ReadLine());
+
+        Console.WriteLine($"1 - Liscia");
+        Console.WriteLine($"2 - Ruvida");
+        Console.WriteLine($"3 - Opaca");
+        Console.WriteLine($"3 - Satinata");
+        Console.WriteLine($"3 - Vergata");
+        Console.WriteLine($"3 - Goffrata");
+
+        TipoEnum tipo = (TipoEnum)int.Parse(Console.ReadLine());
+
+        switch (sceltaTipo)
+        {
+            case 1:
+                Console.WriteLine($"Ha Illustrazioni? S/N");
+                bool illustrazioni = bool.Parse(Console.ReadLine());
+                listModello.Add(new Diario(altezza, lunghezza, prezzo, tipo, illustrazioni));
+                break;
+            case 2:
+                Console.WriteLine($"Tipo righe: ");
+                string righe = Console.ReadLine();
+                listModello.Add(new Quaderno(altezza, lunghezza, prezzo, tipo, righe));
+                break;
+            case 3:
+                Console.WriteLine($"Festivita segnate? S/N ");
+                bool feste = bool.Parse(Console.ReadLine());
+                listModello.Add(new Calendario(altezza, lunghezza, prezzo, tipo, feste));
+                break;
+            default:
+                Console.WriteLine($"Prodotto errato ");
+                break;
+        }
+
+
+
+    }
+
+
+
 }
