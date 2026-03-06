@@ -2,15 +2,15 @@
 //La classe report accetta come argomento una lista di oggetti
 public class Report
 {
-   public List<object> lista;
+   public List<Modello> lista;
 
-   //ReportUI UI = new ReportUI();
+   // ReportUI UI = new ReportUI();
    //StampaLogoReport
    //StampaLogoListaProdotti
-   //StampaProdottoFormattato(Prodotto p)
+   // StampaProdottoFormattato(Prodotto p)
 
    //Costruttore
-   public Report (List<object> lista)
+   public Report (List<Modello> lista)
    {
       this.lista = lista;
    }
@@ -19,15 +19,16 @@ public class Report
    //Metodo per la ricerca in base ad una caratteristica singola ||| S T R |||
    public void CercaPerTipo(string stringa)
    {
-      //UI.StampaLogoListaProdotti();
-      //ReportUI.StampaLogoListaProdotti();
+      // UI.StampaLogoListaProdotti();
+      ReportUI.StampaLogoListaProdotti();
 
-      foreach (object item in lista)
+      foreach (Modello item in lista)
       {
-         if (item.tipo == stringa)
+         if (string.Equals(item.GetType(), stringa))
          {
             //chiamo metodo per la stampa
-            //ReportUI.StampaProdottoFormattato(Prodotto p)
+            ReportUI.StampaProdottoFormattato();
+            item.ToCsv();
          }
       }
 
@@ -36,19 +37,20 @@ public class Report
 
    public void StampaInfo()
    {
-   foreach(var item in lista)
-   {
-      StampaProdottoFormattato(item.ToCSV());
-   }
+      ReportUI.StampaProdottoFormattato();
+      foreach(var item in lista)
+      {
+         item.ToCsv();
+      }
    }
 
    //Metodo per la ricerca in base ad una caratteristica singola ||| I N T |||
    public void CercaPerTipo (int numero)
    {
       //UI.StampaLogoListaProdotti();
-      foreach (object item in lista)
+      foreach (Modello item in lista)
       {
-         if (item.numero == numero)
+         if (item.Prezzo == numero)
          {
             //chiamo metodo per la stampa
             //UI.StampaProdottoFormattato(Prodotto p)
@@ -63,10 +65,9 @@ public class Report
       int counterProd = 0;
 
       //UI.StampaLogoReport();
-      foreach (object item in lista)
+      foreach (Modello item in lista)
       {
-         //
-         //Logica di stampa
+         Console.WriteLine(item.ToCsv());
       }
    }
 
