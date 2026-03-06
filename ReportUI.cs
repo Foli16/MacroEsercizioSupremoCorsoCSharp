@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
 
-class ReportUI
+public class ReportUI
 {
     private ReportUI(){}
 
